@@ -4,6 +4,9 @@
     <h3>
       Settings
     </h3>
+    <div>
+      <input type="text">
+    </div>
   </div>
 </template>
 
