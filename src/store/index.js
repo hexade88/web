@@ -16,7 +16,7 @@ const store = createStore({
     setServers(context){
       api.get_servers()
       .then((res) => {
-        context.commit('setServers', res.data.servers);
+        context.commit('setServers', res.data);
       });
     }
   },
