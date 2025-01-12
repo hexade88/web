@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import api from './ApoService.js'
+import api from './ApoService.js';
   export default {
     name:'StPage',
     data(){
@@ -20,7 +20,7 @@ import api from './ApoService.js'
       }
     },
     mounted(){
-      this.get_user();
+      //this.get_user();
     },
     methods:{
       get_user(){
@@ -28,7 +28,7 @@ import api from './ApoService.js'
         .then((res) => {
           if(!res.data['result']){ this.webhook = "Нет данных"; return;}
           //res.data['result'].
-          this.webhook = res.data['result'].length;
+          this.webhook = res.data['total'];
       });
       }
     },

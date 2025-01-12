@@ -11,6 +11,6 @@ const api = axios.create({
 export default {
   get_servers: () => api.get(`${apiUrl}/get_servers`),
 
-  get_webhook: () => api.get(`${apiUrl}/get_webhook`),
+  get_webhook: (data) => api.post(`${apiUrl}/get_webhook`, data),
 
 }
