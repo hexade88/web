@@ -4,6 +4,7 @@
       <RouterLink to="/" class="nav">Главная</RouterLink>
       <RouterLink to="/settings" class="nav">Настройки</RouterLink>
       <RouterLink to="/users" class="nav">Пользователи</RouterLink>
+      <RouterLink to="/deal" class="nav">Сделки</RouterLink>
     </nav>
     <main>
       <RouterView />

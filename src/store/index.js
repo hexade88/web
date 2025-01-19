@@ -7,9 +7,17 @@ const store = createStore({
       servers:{},
       in_users:[],
       out_users:[],
+      InDealFields:[],
+      OutDealFields:[],
     }
   },
   getters:{
+    getInDealFields(state){
+      return state.InDealFields;
+    },
+    getOutDealFields(state){
+      return state.OutDealFields;
+    },
     getServers(state){
       return state.servers;
     },
@@ -21,6 +29,12 @@ const store = createStore({
     }
   },
   actions:{
+    setInDealFields(context, data){
+      context.commit('setInDealFields', data);
+    },
+    setOutDealFields(context, data){
+      context.commit('setOutDealFields', data);
+    },
     setServers(context){
       api.get_servers()
       .then((res) => {
@@ -36,6 +50,13 @@ const store = createStore({
 
   },
   mutations:{
+    setInDealFields(state, data){
+      state.InDealFields = data;
+    },
+    setOutDealFields(state, data){
+      state.OutDealFields = data;
+    },
+
     setServers(state, data){
       state.servers = data;
     },
