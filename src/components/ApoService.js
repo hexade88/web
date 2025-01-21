@@ -17,4 +17,6 @@ export default {
 
   setdealfields: (data) => api.post(`${apiUrl}/setdealfields`, {'fields':data}),
 
+  dealID:(data) => api.post(`${apiUrl}/dealID`, data),
+
 }

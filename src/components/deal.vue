@@ -121,32 +121,26 @@ export default {
     },
     outloadfields(id){
       var field = null;
-      var param = {};
       this.in_fields.forEach((el) => {
         if(el.ID == id){ field = el; }
       });
       if(field != null){
-        Object.keys(field).forEach((fild) => {
-          if(fild == "ID") { return };
-          if(fild == 'ENTITY_ID' ) { return; };
-          if(fild == "FIELD_NAME") { param.FIELD_NAME = field[fild].replace('UF_CRM_', ''); return; };
-          param[fild] = field[fild];
-        });
+        api.dealID({'id':id})
+        .then((res) => {
+          api.setdealfields(res.data['result'])
+          .then((res2) => {
+            console.log(res2);
+            this.out_fields.push(field);
+            this.outsaveStore();
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => {
+            field = null;
+          })
+        })
       }
-      console.log(param);
-      api.setdealfields(param)
-      .then((res) => {
-        console.log(res);
-        this.out_fields.push(field);
-        this.outsaveStore();
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        field = null;
-        param = {};
-      })
     },
 
   },
