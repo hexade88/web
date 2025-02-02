@@ -97,13 +97,15 @@ export default {
   methods:{
 
     compare(){
+      let compareArr = {};
       this.webhook.forEach((elem) => {
         this.outwebhook.forEach((elem2) => {
-          if(elem.NAME == elem2.NAME && elem.LAST_NAME == elem2.LAST_NAME){ elem.NEW_ID = elem2.ID;}
+          if(elem.NAME == elem2.NAME && elem.LAST_NAME == elem2.LAST_NAME){ elem.NEW_ID = elem2.ID; compareArr[elem.ID] = elem2.ID;}
         });
-        if(!elem.NEW_ID){ elem.NEW_ID = "1" }
+        if(!elem.NEW_ID){ elem.NEW_ID = "1"; compareArr[elem.ID] = "1"; }
       });
       this.saveStore();
+      this.$store.dispatch('setCompare', compareArr);
     },
 
     get_out_user(){

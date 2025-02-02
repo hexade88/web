@@ -19,4 +19,7 @@ export default {
 
   dealID:(data) => api.post(`${apiUrl}/dealID`, data),
 
+  getDealList: (data) => api.post(`${apiUrl}/getDealList`, data),
+
+  getDealIdBatch: (data) => api.post(`${apiUrl}/getDealIdBatch`, data), //Пакетная загрузка сделок
 }

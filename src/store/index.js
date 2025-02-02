@@ -9,9 +9,17 @@ const store = createStore({
       out_users:[],
       InDealFields:[],
       OutDealFields:[],
+      deal:[],
+      compare:{},
     }
   },
   getters:{
+    getCompare(state){
+      return state.compare;
+    },
+    getDeal(state){
+      return state.deal;
+    },
     getInDealFields(state){
       return state.InDealFields;
     },
@@ -29,6 +37,12 @@ const store = createStore({
     }
   },
   actions:{
+    setCompare(context, data){
+      context.commit('setCompare', data);
+    },
+    setDeal(context, data){
+      context.commit('setDeal', data);
+    },
     setInDealFields(context, data){
       context.commit('setInDealFields', data);
     },
@@ -50,6 +64,12 @@ const store = createStore({
 
   },
   mutations:{
+    setCompare(state, data){
+      state.compare = data;
+    },
+    setDeal(state, data){
+      state.deal = data;
+    },
     setInDealFields(state, data){
       state.InDealFields = data;
     },

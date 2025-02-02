@@ -59,6 +59,36 @@
         </tbody>
       </table>
     </div>
+    <div>
+      <table class="table">
+        <tr>
+          <th><p>IN Сделки</p></th>
+          <th>
+            <button @click="get_deal_list()" :disabled="isDisabledFields">Загрузить ID Сделок</button>
+          </th>
+        </tr>
+        <tr>
+          <th>Всего</th>
+          <td>{{ totalDealList }}</td>
+        </tr>
+        <tr>
+          <th>Загружено</th>
+          <td>{{ resultDeal.length }}</td>
+        </tr>
+        <tr>
+          <th>Загрузка с номера</th>
+          <td>{{ nextDeal }}</td>
+        </tr>
+        <tr>
+          <th>Запрос</th>
+          <td>{{ work }}</td>
+        </tr>
+      </table>
+      <br>
+
+    </div>
+    <div>
+    </div>
   </div>
 </template>
 
@@ -74,9 +104,58 @@ export default {
       out_fields:[],
       total:1,
       outtotal:1,
+
+      isDisabledFields:false,
+      resultDeal:[],
+      totalDealList: 1,
+      nextDeal:1,
+      work:false,
+      timer:null,
+
+      compare:{},
+      keyss:{},
     }
   },
+  computed:{
+    letsave(){
+      if(Object.keys(this.compare).length != 0 & this.resultDeal.length > 0){ return false; }else return true;
+      //return false;
+    },
+  },
   methods:{
+    get_deal_list(){
+      if(this.totalDealList == this.resultDeal.length) { console.log("Загружены все сделки"); alert("Загружены все сделки"); return; }
+      this.isDisabledFields = true;
+      this.timer = setInterval(() => {
+        if(!this.work){ this.getOnTimer(); }
+      }, 1000);
+    },
+
+    getOnTimer(){
+      this.work = true;
+      api.getDealList({'next':this.nextDeal})
+      .then((res) => {
+        this.totalDealList = res.data['total'];
+        res.data['result'].forEach((elem) => {
+          this.resultDeal.push(elem);
+        });
+        this.nextDeal = res.data['next'];
+        this.work = false;
+        if(this.totalDealList == this.resultDeal.length) {
+          console.log("Загрузка завершена, таймер остановлен.");
+          clearInterval(this.timer);
+          this.isDisabledFields = false;
+          this.$store.dispatch('setDeal', this.resultDeal);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        this.work = false;
+        this.isDisabledFields = false;
+        clearInterval(this.timer);
+      })
+    },
+
     get_user_fields(){
       if(this.in_fields.length == this.total) { alert("Загружены все данные"); return; }
       this.isDisabled = true;
@@ -106,7 +185,7 @@ export default {
           this.out_fields.push(elem);
         });
         this.isOutDisabled = false;
-        this.saveStore();
+        this.outsaveStore();
       })
       .catch((err) => {
         console.log(err);
@@ -147,6 +226,8 @@ export default {
   mounted(){
     if(this.$store.state.InDealFields.length > 0){ this.in_fields = this.$store.getters.getInDealFields; this.isDisabled = true; };
     if(this.$store.state.OutDealFields.length > 0){ this.out_fields = this.$store.getters.getOutDealFields; this.isOutDisabled = true; };
+    if(this.$store.state.deal.length > 0){ this.resultDeal = this.$store.getters.getDeal; }
+    this.compare = this.$store.getters.getCompare;
  },
 }
 </script>
