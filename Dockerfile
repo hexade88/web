@@ -1,8 +1,7 @@
-FROM node:23-alpine3.20
+FROM nginx:1.26
 
 WORKDIR /app
 EXPOSE 8085
-COPY ./dist .
 
-RUN npm install
-CMD [ "node", "index.js" ]  
+COPY ./default.conf /etc/nginx/nginx.conf
+COPY ./dist .
