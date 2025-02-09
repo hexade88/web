@@ -7,9 +7,8 @@
     </div>
     <div><button @click="get_deal_transfer()" :disabled="isLoad">Выполнить перенос</button></div>
     <div>
-      <p>Кол-во сделок за 1 запрос </p>{{ this.step }}
-      <p>Работа ведётся - запрос </p>{{ this.workIn }}
-      <p>Работа ведётся - сохранение </p>{{ this.workOut }}
+      <p>Запрос сделки из источника </p>{{ this.workIn }}
+      <p>Загрузка сделки в приёмник </p>{{ this.workOut }}
       <p>Счётчик переноса </p>{{ this.next }}
     </div>
   </div>
@@ -23,10 +22,10 @@ export default {
   data(){
     return{
       isLoad:false,
-      step: 2,
       next: 0,
       workIn:false,
       workOut:false,
+      timer:null,
     }
   },
   computed:{
@@ -42,23 +41,33 @@ export default {
         if(Object.keys(this.compare).length == 0){ console.log("Необходимо загрузить пользователей и сравнить их ID"); return; }
         if(this.dealID.length == 0){ console.log("Необходимо загрузить аписок ID сделок"); return; }
         if(this.getInDealFields.length == 0 || this.getOutDealFields.length == 0){ console.log("Необходимо загрузить/перенести пользовательские поля"); return; }
-        this.workIn = true;
-        this.load();
-        this.workIn = false;
-      },
+        this.timer = setInterval(() => {
+        if(!this.workIn && !this.workOut){ this.load(); }
+          }, 1000);
+        },
       load(){
-        var param = {}
-        for(var i = 0; i < this.step; i++){
-          var name = 'deal_' + this.dealID[this.next].ID;
-          param[name] = 'crm.deal.get?ID=' + this.dealID[this.next].ID ;
-          this.next ++;
-        };
-        api.getDealIdBatch({'deals':param})
+        if(this.next >= this.dealID.length){ clearInterval(this.timer); return; }
+        this.workIn = true;
+        var param = this.dealID[this.next].ID; //21626;
+        api.getDealIdBatch({'deal':param})
         .then((rezult) => {
-          console.log(rezult);
+          var deal = rezult.data.result;
+          if(this.compare.hasOwnProperty(deal.ASSIGNED_BY_ID)){
+            deal.ASSIGNED_BY_ID = this.compare[deal.ASSIGNED_BY_ID];
+          }
+          else{ deal.ASSIGNED_BY_ID = 1; }
+          this.workOut = true;
+          api.setDealIdBatch({ 'rezult':deal })
+            .then((rez) => { console.log(rez.data.result); this.workOut = false; })
+            .catch((erro) => { console.log(erro); this.workOut = false; clearInterval(this.timer); })
+
+          this.next++;
+          this.workIn = false;
         })
         .catch((err) => {
           console.log(err);
+          clearInterval(this.timer);
+          this.workIn = false;
         });
       },
   }
