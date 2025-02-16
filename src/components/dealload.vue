@@ -43,7 +43,7 @@ export default {
         if(this.getInDealFields.length == 0 || this.getOutDealFields.length == 0){ console.log("Необходимо загрузить/перенести пользовательские поля"); return; }
         this.timer = setInterval(() => {
         if(!this.workIn && !this.workOut){ this.load(); }
-          }, 1000);
+          }, 500);
         },
       load(){
         if(this.next >= this.dealID.length){ clearInterval(this.timer); return; }
