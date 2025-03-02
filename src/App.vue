@@ -6,6 +6,9 @@
       <RouterLink to="/users" class="nav">Пользователи</RouterLink>
       <RouterLink to="/deal" class="nav">Парам-Сделки</RouterLink>
       <RouterLink to="/dealload" class="nav">Загрузка-Сделок</RouterLink>
+      <RouterLink to="/idload" class="nav">Загрузка-по ID</RouterLink>
+      <RouterLink to="/company" class="nav">Компании</RouterLink>
+      <RouterLink to="/contacts" class="nav">Контакты</RouterLink>
     </nav>
     <main>
       <RouterView />

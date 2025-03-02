@@ -49,7 +49,7 @@ export default {
         if(this.next >= this.dealID.length){ clearInterval(this.timer); return; }
         this.workIn = true;
         var param = this.dealID[this.next].ID; //21626;
-        api.getDealIdBatch({'deal':param})
+        api.getDealIdBatch({'deal':param, source:0,})
         .then((rezult) => {
           var deal = rezult.data.result;
           if(this.compare.hasOwnProperty(deal.ASSIGNED_BY_ID)){
