@@ -11,9 +11,17 @@ const store = createStore({
       OutDealFields:[],
       deal:[],
       compare:{},
+      companys:[],
+      contacts:[],
     }
   },
   getters:{
+    getContacts(state){
+      return state.contacts;
+    },
+    getCompanys(state){
+      return state.companys;
+    },
     getCompare(state){
       return state.compare;
     },
@@ -37,6 +45,12 @@ const store = createStore({
     }
   },
   actions:{
+    setContacts(context, data){
+      context.commit('setContacts', data);
+    },
+    setCompanys(context, data){
+      context.commit('setCompanys', data);
+    },
     setCompare(context, data){
       context.commit('setCompare', data);
     },
@@ -64,6 +78,12 @@ const store = createStore({
 
   },
   mutations:{
+    setContacts(state, data){
+      state.contacts = data;
+    },
+    setCompanys(state, data){
+      state.companys = data;
+    },
     setCompare(state, data){
       state.compare = data;
     },

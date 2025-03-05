@@ -104,6 +104,7 @@ export default {
         });
       },
       get_deal_transfer(){
+        if(Object.keys(this.compare).length < 1){ alert("Загрузите пользователей"); return; }
         api.setDealIdBatch({ 'rezult':this.deal })
             .then((rez) => {
               api.getDealIdBatch({'deal':rez.data.result, source:1,})
