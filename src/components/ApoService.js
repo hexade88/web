@@ -26,6 +26,10 @@ export default {
   setDealIdBatch: (data) => api.post(`${apiUrl}/setDealIdLoad`, data), //Загрузка сделки по ID
 
   getCompanyList: (data) => api.post(`${apiUrl}/getCompanyList`, data), //Загрузка списка компаний по 50
+  setCompany: (data) => api.post(`${apiUrl}/setCompany`, data),         //Сохранение списка компаний
+  getCompanyID: (data) => api.post(`${apiUrl}/getCompanyID`, data),
 
-  getContactList: (data) => api.post(`${apiUrl}/getContactList`, data), //Загрузка списка компаний по 50
+  getContactList: (data) => api.post(`${apiUrl}/getContactList`, data), //Загрузка списка контактов по 50
+  getContactID: (data) => api.post(`${apiUrl}/getContactID`, data),
+  setContact: (data) => api.post(`${apiUrl}/setContact`, data),
 }

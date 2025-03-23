@@ -28,6 +28,8 @@ export default {
   computed:{
     ...mapGetters({
       compare : 'getCompare',
+      STAGE: 'getSTAGE',
+      CATEGORY: 'getCATEGORY',
     }),
   },
     methods:{
@@ -37,6 +39,16 @@ export default {
         .then((rezult) => {
           this.deal = rezult.data.result;
           this.isLoad = false;
+
+          if(this.CATEGORY.hasOwnProperty(this.deal.CATEGORY_ID)){
+            this.deal.CATEGORY_ID = this.CATEGORY[this.deal.CATEGORY_ID];
+          }
+
+          //this.deal.STAGE_ID = "C1:WON"
+          if(this.STAGE.hasOwnProperty(this.deal.STAGE_ID)){
+            this.deal.STAGE_ID = this.STAGE[this.deal.STAGE_ID];
+          }else{console.log(this.deal.STAGE_ID);}
+
           if(this.compare.hasOwnProperty(this.deal.ASSIGNED_BY_ID)){              //Ответственный
             this.deal.ASSIGNED_BY_ID = this.compare[this.deal.ASSIGNED_BY_ID];
           }
