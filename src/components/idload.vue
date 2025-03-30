@@ -44,7 +44,6 @@ export default {
             this.deal.CATEGORY_ID = this.CATEGORY[this.deal.CATEGORY_ID];
           }
 
-          //this.deal.STAGE_ID = "C1:WON"
           if(this.STAGE.hasOwnProperty(this.deal.STAGE_ID)){
             this.deal.STAGE_ID = this.STAGE[this.deal.STAGE_ID];
           }else{console.log(this.deal.STAGE_ID);}

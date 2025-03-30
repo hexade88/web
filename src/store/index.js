@@ -14,6 +14,15 @@ const store = createStore({
       companys:[],
       contacts:[],
       STAGE:{
+        'WON': 'WON',            //проект Сделка успешна
+        'EXECUTING': 'EXECUTING', //Тендер
+        '5':'5',                  //Деньги на счету
+        '1':'1',
+        '3':'3',
+        '4':'4',
+        '2':'2',
+        '6':'6',
+        'NEW': 'NEW',
         'C4:NEW':'C1:NEW',
         'C4:PREPARATION':'C1:PREPARATION',
         'C4:PREPAYMENT_INVOICE': 'C1:PREPAYMENT_INVOICE',
@@ -38,7 +47,7 @@ const store = createStore({
         'C1:5': 'C2:UC_WVB3VD',
         'C1:WON': 'C2:WON',
         'C1:LOSE': 'C2:LOSE',
-        'C2:NEW': 'C3:NEW',
+        'C2:NEW': 'C3:NEW',    //Продажа товара
         'C2:PREPARATION':'C3:PREPARATION',
         'C2:PREPAYMENT_INVOICE':'C3:PREPAYMENT_INVOICE',
         'C2:EXECUTING': 'C3:EXECUTING',
@@ -47,8 +56,11 @@ const store = createStore({
         'C2:FINAL_INVOICE': 'C3:UC_1KF328',
         'C2:4': 'C3:UC_GUWQBA',
         'C2:5': 'C3:UC_BJBTV3',
+        'C2:7': 'C3:UC_DQPN0P',
         'C2:8': 'C3:UC_Q288XO',
-        'C2:WON':'C3:WON',
+        'C2:6': 'C3:UC_IAAJUL',  //Дубликат
+        'C2:9': 'C3:UC_IAAJUL',  //Другое
+        'C2:WON':'C3:WON',   //заморожен
         'C2:LOSE': 'C3:LOSE',
         'C5:NEW': 'C4:NEW',
         'C5:PREPARATION': 'C4:PREPARATION',
@@ -66,6 +78,7 @@ const store = createStore({
         'C6:1': 'C5:UC_6EETE4',
         'C6:WON': 'C5:WON',
         'C6:LOSE': 'C5:LOSE',
+        'C6:4': 'C5:UC_MSUJSN',
       },
       CATEGORY:{
         '0':0,
@@ -74,7 +87,7 @@ const store = createStore({
         '2':3,
         '5':4,
         '6':5,
-
+        'null':0
       },
     }
   },

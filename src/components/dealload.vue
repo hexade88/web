@@ -34,6 +34,8 @@ export default {
       dealID : 'getDeal',                       //array
       getInDealFields : 'getInDealFields',      //array
       getOutDealFields : 'getOutDealFields',    //array
+      STAGE: 'getSTAGE',
+      CATEGORY: 'getCATEGORY',
     }),
   },
     methods:{
@@ -52,10 +54,65 @@ export default {
         api.getDealIdBatch({'deal':param, source:0,})
         .then((rezult) => {
           var deal = rezult.data.result;
+
+          if(this.CATEGORY.hasOwnProperty(deal.CATEGORY_ID)){
+            deal.CATEGORY_ID = this.CATEGORY[deal.CATEGORY_ID];
+          }
+
+          if(this.STAGE.hasOwnProperty(deal.STAGE_ID)){
+            deal.STAGE_ID = this.STAGE[deal.STAGE_ID];
+          }else{console.log(param, deal.STAGE_ID);}
+
           if(this.compare.hasOwnProperty(deal.ASSIGNED_BY_ID)){
             deal.ASSIGNED_BY_ID = this.compare[deal.ASSIGNED_BY_ID];
+          }else{ deal.ASSIGNED_BY_ID = 1; }
+
+          if(this.compare.hasOwnProperty(deal.UF_CRM_1600087700)){
+            deal.UF_CRM_1600087700 = this.compare[deal.UF_CRM_1600087700];
+          }else{ deal.UF_CRM_1600087700 = 1; }
+
+          if(this.compare.hasOwnProperty(deal.UF_CRM_1512624847)){
+            deal.UF_CRM_1512624847 = this.compare[deal.UF_CRM_1512624847];
+          }else{ deal.UF_CRM_1512624847 = 1; }
+
+          if(this.compare.hasOwnProperty(deal.UF_CRM_1542607606)){
+            deal.UF_CRM_1542607606 = this.compare[deal.UF_CRM_1542607606];
+          }else{ deal.UF_CRM_1542607606 = 1; }
+
+          if(this.compare.hasOwnProperty(deal.UF_CRM_1542607696)){
+            deal.UF_CRM_1542607696 = this.compare[deal.UF_CRM_1542607696];
+          }else{ deal.UF_CRM_1542607696 = 1; }
+
+          if(this.compare.hasOwnProperty(deal.UF_CRM_1512624758)){  //Инженер
+            deal.UF_CRM_1512624758 = this.compare[deal.UF_CRM_1512624758];
+          }else{ deal.UF_CRM_1512624758 = 1; }
+
+          if(this.compare.hasOwnProperty(deal.CREATED_BY_ID)){
+            deal.CREATED_BY_ID = this.compare[deal.CREATED_BY_ID];
+          }else{ deal.CREATED_BY_ID = 1; }
+
+          if(this.compare.hasOwnProperty(deal.MOVED_BY_ID)){
+            deal.MOVED_BY_ID = this.compare[deal.MOVED_BY_ID];
+          }else{ deal.MOVED_BY_ID = 1; }
+
+          if(this.compare.hasOwnProperty(deal.LAST_ACTIVITY_BY)){
+            deal.LAST_ACTIVITY_BY = this.compare[deal.LAST_ACTIVITY_BY];
+          }else{ deal.LAST_ACTIVITY_BY = 1; }
+
+          if(deal.UF_CRM_1512626819.length > 0){
+            var arr = [];
+            deal.UF_CRM_1512626819.forEach(element => {
+              if(this.compare.hasOwnProperty(element)){ arr.push(this.compare[element]) }
+              else{ arr.push(1); }
+            });
+            if(arr.includes(1)){ deal.UF_CRM_1512626819 = [1,]; }
+            else{ deal.UF_CRM_1512626819 = arr;}
           }
-          else{ deal.ASSIGNED_BY_ID = 1; }
+
+          if(this.compare.hasOwnProperty(deal.MODIFY_BY_ID)){
+            deal.MODIFY_BY_ID = this.compare[deal.MODIFY_BY_ID];
+          }else{ deal.MODIFY_BY_ID = 1; }
+
           this.workOut = true;
           api.setDealIdBatch({ 'rezult':deal })
             .then((rez) => { console.log(rez.data.result); this.workOut = false; })
