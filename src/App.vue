@@ -9,6 +9,7 @@
       <RouterLink to="/idload" class="nav">Загрузка-по ID</RouterLink>
       <RouterLink to="/company" class="nav">Компании</RouterLink>
       <RouterLink to="/contacts" class="nav">Контакты</RouterLink>
+      <RouterLink to="/correct" class="nav">Правки</RouterLink>
     </nav>
     <main>
       <RouterView />

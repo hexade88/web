@@ -8,6 +8,7 @@ const routes = [
   { path:'/idload', component: () => import('@/components/idload.vue') },
   { path:'/company', component: () => import('@/components/company.vue') },
   { path:'/contacts', component: () => import('@/components/contacts.vue') },
+  { path:'/correct', component: () => import('@/components/correct.vue') },
 ];
 
 export default routes;

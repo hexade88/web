@@ -30,6 +30,7 @@ export default {
       compare : 'getCompare',
       STAGE: 'getSTAGE',
       CATEGORY: 'getCATEGORY',
+      SROK_DEAL:'SROK_DEAL',
     }),
   },
     methods:{
@@ -52,6 +53,10 @@ export default {
             this.deal.ASSIGNED_BY_ID = this.compare[this.deal.ASSIGNED_BY_ID];
           }
           else{ this.deal.ASSIGNED_BY_ID = 1; }
+
+          if(this.SROK_DEAL.hasOwnProperty(this.deal.UF_CRM_1530002202)){            //срок сделки
+            this.deal.UF_CRM_1530002202 = this.SROK_DEAL[this.deal.UF_CRM_1530002202];
+          }else{ this.deal.UF_CRM_1530002202 = ''; }
 
           if(this.compare.hasOwnProperty(this.deal.UF_CRM_1600087700)){
             this.deal.UF_CRM_1600087700 = this.compare[this.deal.UF_CRM_1600087700];

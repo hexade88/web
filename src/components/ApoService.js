@@ -24,6 +24,7 @@ export default {
   getDealIdBatch: (data) => api.post(`${apiUrl}/getDealIdLoad`, data), //Загрузка сделки по ID
 
   setDealIdBatch: (data) => api.post(`${apiUrl}/setDealIdLoad`, data), //Загрузка сделки по ID
+  updDealIdLoad: (data) => api.post(`${apiUrl}/updDealIdLoad`, data), //Обновить сделку по ID
 
   getCompanyList: (data) => api.post(`${apiUrl}/getCompanyList`, data), //Загрузка списка компаний по 50
   setCompany: (data) => api.post(`${apiUrl}/setCompany`, data),         //Сохранение списка компаний
@@ -32,4 +33,6 @@ export default {
   getContactList: (data) => api.post(`${apiUrl}/getContactList`, data), //Загрузка списка контактов по 50
   getContactID: (data) => api.post(`${apiUrl}/getContactID`, data),
   setContact: (data) => api.post(`${apiUrl}/setContact`, data),
+
+  getAllDealNewBX: (data) => api.post(`${apiUrl}/getAllDealNewBX`, data),    //Загрузка всех сделок нового битрикса для правок
 }

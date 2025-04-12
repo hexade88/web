@@ -36,6 +36,7 @@ export default {
       getOutDealFields : 'getOutDealFields',    //array
       STAGE: 'getSTAGE',
       CATEGORY: 'getCATEGORY',
+      SROK_DEAL:'SROK_DEAL',
     }),
   },
     methods:{
@@ -71,16 +72,20 @@ export default {
             deal.UF_CRM_1600087700 = this.compare[deal.UF_CRM_1600087700];
           }else{ deal.UF_CRM_1600087700 = 1; }
 
+          if(this.SROK_DEAL.hasOwnProperty(deal.UF_CRM_1530002202)){            //срок сделки
+            deal.UF_CRM_1530002202 = this.SROK_DEAL[deal.UF_CRM_1530002202];
+          }else{ deal.UF_CRM_1530002202 = ''; }
+
           if(this.compare.hasOwnProperty(deal.UF_CRM_1512624847)){
-            deal.UF_CRM_1512624847 = this.compare[deal.UF_CRM_1512624847];
+            deal.UF_CRM_1512624847 = this.compare[deal.UF_CRM_1512624847]; //Продавец
           }else{ deal.UF_CRM_1512624847 = 1; }
 
           if(this.compare.hasOwnProperty(deal.UF_CRM_1542607606)){
-            deal.UF_CRM_1542607606 = this.compare[deal.UF_CRM_1542607606];
+            deal.UF_CRM_1542607606 = this.compare[deal.UF_CRM_1542607606]; //Лидген
           }else{ deal.UF_CRM_1542607606 = 1; }
 
           if(this.compare.hasOwnProperty(deal.UF_CRM_1542607696)){
-            deal.UF_CRM_1542607696 = this.compare[deal.UF_CRM_1542607696];
+            deal.UF_CRM_1542607696 = this.compare[deal.UF_CRM_1542607696];  //Руководитель проектов
           }else{ deal.UF_CRM_1542607696 = 1; }
 
           if(this.compare.hasOwnProperty(deal.UF_CRM_1512624758)){  //Инженер
