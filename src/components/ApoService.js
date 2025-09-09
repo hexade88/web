@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const apiUrl = "http://localhost:5002";
+const apiUrl = "http://192.168.0.148:5002";
 
 const api = axios.create({
-  baseURL:'http://localhost',
+  baseURL:'http://192.168.0.148',
   timeout:30000,
   headers:{'Accept':'application/json, text/plain, */*'}
 });
