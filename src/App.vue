@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav>
+   <!--  <nav>
       <RouterLink to="/" class="nav">Главная</RouterLink>
       <RouterLink to="/settings" class="nav">Настройки</RouterLink>
       <RouterLink to="/users" class="nav">Пользователи</RouterLink>
@@ -10,25 +10,15 @@
       <RouterLink to="/company" class="nav">Компании</RouterLink>
       <RouterLink to="/contacts" class="nav">Контакты</RouterLink>
       <RouterLink to="/correct" class="nav">Правки</RouterLink>
-    </nav>
-    <main>
+    </nav> -->
+    <!-- <main> -->
       <RouterView />
-    </main>
+    <!-- </main> -->
   </div>
 </template>
 
-<script>
-export default {
-  name: 'App',
-  data(){
-    return {
+<script setup>
 
-    }
-  },
-  methods: {
-
-    },
-}
 </script>
 
 <style scoped>

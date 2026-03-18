@@ -1,29 +1,25 @@
 
 <template>
   <div>
-    <p> Сервер источник {{ getServers.SOURCE_IP }}</p>
-    <p> Сервер приёмник {{ getServers.RECEIVE_IP }}</p>
+    {{ variable }}
   </div>
 </template>
 
-<script>
-import { mapGetters } from "vuex";;
-  export default {
-    name:'StPage',
-    data(){
-      return{
+<script setup>
+import { onMounted, ref } from 'vue';
 
-      }
-    },
-    mounted(){
-      this.$store.dispatch('setServers');
-    },
-    computed:{
-      ...mapGetters([
-        'getServers'
-      ])
-    }
+var variable = ref('');
+
+onMounted(() => {
+  window.onload = function(){
+    window.B24Js.init(function () {
+      var placementInfo = window.B24Js.placement.info();
+      variable.value = placementInfo["options"];
+      console.log(placementInfo["options"].ID);
+    });
   }
+});
+
 </script>
 
 <style scoped>
