@@ -12,11 +12,12 @@ var variable = ref('');
 
 onMounted(() => {
   window.onload = function(){
-    window.B24Js.init(function () {
+    console.log(window.B24Js);
+   /* window.B24Js.init(function () {
       var placementInfo = window.B24Js.placement.info();
-      variable.value = placementInfo["options"];
-      console.log(placementInfo["options"].ID);
-    });
+       variable.value = placementInfo["options"];
+      console.log(placementInfo["options"].ID); 
+    });*/
   }
 });
 
