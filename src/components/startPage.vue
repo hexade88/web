@@ -11,14 +11,15 @@ import { onMounted, ref } from 'vue';
 var variable = ref('');
 
 onMounted(() => {
-  window.onload = function(){
+  variable.value = "Hi";
+  /* window.onload = function(){
     console.log(window.B24Js);
    window.B24Js.init(function () {
       var placementInfo = window.B24Js.placement.info();
        variable.value = placementInfo["options"];
       console.log(placementInfo["options"].ID); 
     });
-  }
+  } */
 });
 
 </script>

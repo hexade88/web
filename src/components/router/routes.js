@@ -1,8 +1,8 @@
 
 const routes = [
-  { path:'/*', component: () => import('@/components/startPage.vue') },
-/*   { path:'/settings', component: () => import('@/components/settings.vue') },
-  { path:'/users', component: () => import('@/components/users.vue') },
+  { path:'/bx24', component: () => import('@/components/startPage.vue') },
+   { path:'/about', component: () => import('@/components/about.vue') },
+  /*{ path:'/users', component: () => import('@/components/users.vue') },
   { path:'/deal', component: () => import('@/components/deal.vue') },
   { path:'/dealload', component: () => import('@/components/dealload.vue') },
   { path:'/idload', component: () => import('@/components/idload.vue') },
